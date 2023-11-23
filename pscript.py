@@ -10,8 +10,8 @@ def deploy_environment(workspace):
 
         # Run Terraform commands for deployment
         print(f"Running command: terraform init -input=false in {os.path.join(script_dir, workspace)}")
-        subprocess.run(["C:\Program Files\terraform", "init", "-input=false"], check=True, shell=True, cwd=os.path.join(script_dir, workspace))
-        subprocess.run(["C:\Program Files\terraform", "apply", "-auto-approve", "-lock=false"], check=True, shell=True, cwd=os.path.join(script_dir, workspace))
+        subprocess.run([r"C:\Program Files\terraform", "init", "-input=false"], check=True, shell=True, cwd=os.path.join(script_dir, workspace))
+        subprocess.run([r"C:\Program Files\terraform", "apply", "-auto-approve", "-lock=false"], check=True, shell=True, cwd=os.path.join(script_dir, workspace))
     except Exception as e:
         print(f"Error deploying workspace {workspace}: {e}")
 
