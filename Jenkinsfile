@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PYTHON_PATH = 'C:\Users\sysadmin\AppData\Local\Programs\Python\Python312'  // Replace with the path to your Python installation
+        PYTHON_PATH = r'C:\Users\sysadmin\AppData\Local\Programs\Python\Python312'  // Replace with the path to your Python installation
     }
 
     stages {
