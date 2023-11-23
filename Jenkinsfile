@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PYTHON_PATH = 'C:\\Users\\sysadmin\\AppData\\Local\\Programs\\Python\\Python312'
+        PYTHON_PATH = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\parallel-script'
     }
 
     stages {
