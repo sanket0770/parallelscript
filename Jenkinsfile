@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PYTHON_PATH = 'C:\\Users\\sysadmin\\AppData\\Local\\Programs\\Python\\Python312'  // Replace with the path to your Python installation
+        PYTHON_PATH = 'C:\\Users\\sysadmin\\AppData\\Local\\Programs\\Python\\Python312'
     }
 
     stages {
@@ -15,8 +15,10 @@ pipeline {
         stage('Install Python Packages') {
             steps {
                 script {
+                    // Download get-pip.py
+                    bat 'curl -o get-pip.py https://bootstrap.pypa.io/get-pip.py'
+
                     // Install pip
-                    bat 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
                     bat "python ${env.PYTHON_PATH}\\get-pip.py"
                     
                     // Install boto3
