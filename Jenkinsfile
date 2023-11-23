@@ -22,7 +22,7 @@ pipeline {
                     bat "python ${env.PYTHON_PATH}\\get-pip.py"
                     
                     // Install boto3
-                    bat "C:\\Users\\sysadmin\\AppData\Local\\\Programs\\Python\\Python311\\Lib\\site-packages\\get-pip install boto3"                }
+                    bat "C:\\Users\\sysadmin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\get-pip install boto3"                }
             }
         }
 
