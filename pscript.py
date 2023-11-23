@@ -9,6 +9,7 @@ def deploy_environment(workspace):
         script_dir = os.path.dirname(os.path.abspath(__file__))
 
         # Run Terraform commands for deployment
+        print(f"Running command: terraform init -input=false in {os.path.join(script_dir, workspace)}")
         subprocess.run(["terraform", "init", "-input=false"], check=True, cwd=os.path.join(script_dir, workspace))
         subprocess.run(["terraform", "apply", "-auto-approve", "-lock=false"], check=True, cwd=os.path.join(script_dir, workspace))
     except Exception as e:
