@@ -9,14 +9,14 @@ def deploy_environment(workspace):
         script_dir = os.path.dirname(os.path.abspath(__file__))
 
         # Run Terraform commands for deployment
-        print(f"Running command: terraform init -input=false in {os.path.join(script_dir, workspace)}")
+        #print(f"Running command: terraform init -input=false in {os.path.join(script_dir, workspace)}")
         subprocess.run(["terraform", "init", "-input=false"], check=True, shell=True, cwd=os.path.join(script_dir, workspace))
         subprocess.run(["terraform", "apply", "-auto-approve", "-lock=false"], check=True, shell=True, cwd=os.path.join(script_dir, workspace))
     except Exception as e:
         print(f"Error deploying workspace {workspace}: {e}")
 
 # List of Terraform workspace directories
-workspaces = [r"workspace/workspace1", r"workspace/workspace2", r"workspace\workspace3"]  # Add your workspace directories here
+workspaces = [r"workspace/workspace1", r"workspace/workspace2", r"workspace/workspace3"]  # Add your workspace directories here
 
 # Set the maximum number of concurrent threads
 max_workers = 3  # You can adjust this based on your system's capabilities
