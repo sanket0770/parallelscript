@@ -11,7 +11,7 @@ pipeline {
         stage('Run Python Script') {
             steps {
                 script {
-                    sh 'python pscript.py'
+                    bat 'python pscript.py'
                 }
             }
         }
