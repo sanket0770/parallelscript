@@ -1,6 +1,19 @@
 import os
 import subprocess
+import boto3
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# Set your AWS credentials
+aws_access_key_id = "AKIAX3LNWYOGIVRPHOXY"
+aws_secret_access_key = "9sHJCSQjMRbhwNrKy3YJC5Vni2GSAwPziovr5aUh"
+aws_region = "eu-west-2"
+
+# Set up AWS credentials for boto3
+boto3.setup_default_session(
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+    region_name=aws_region
+)
 
 # Define a function to deploy Elastic Beanstalk environment for a specific workspace
 def deploy_environment(workspace):
@@ -9,7 +22,6 @@ def deploy_environment(workspace):
         script_dir = os.path.dirname(os.path.abspath(__file__))
 
         # Run Terraform commands for deployment
-        #print(f"Running command: terraform init -input=false in {os.path.join(script_dir, workspace)}")
         subprocess.run(["terraform", "init", "-input=false"], check=True, shell=True, cwd=os.path.join(script_dir, workspace))
         subprocess.run(["terraform", "apply", "-auto-approve", "-lock=false"], check=True, shell=True, cwd=os.path.join(script_dir, workspace))
     except Exception as e:
