@@ -22,7 +22,7 @@ pipeline {
                     bat "python ${env.PYTHON_PATH}\\get-pip.py"
                     
                     // Install boto3
-                    bat "${env.PYTHON_PATH}\\Scripts\\pip install boto3"                }
+                    bat "${env.PYTHON_PATH}\\pip install boto3"                }
             }
         }
 
