@@ -4,9 +4,7 @@ pipeline {
     environment {
         PYTHON_PATH = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\parallel-script'
     }
-     environment{
-         BOTO_PATH = 'C:\\Users\\sysadmin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages'
-     }
+     
     stages {
         stage('Checkout') {
             steps {
@@ -24,8 +22,7 @@ pipeline {
                     bat "python ${env.PYTHON_PATH}\\get-pip.py"
                     
                     // Install boto3
-                    bat "${env.BOTO_PATH}\\pip install boto3"
-                }
+                    bat "${env.PYTHON_PATH}\\Scripts\\pip install boto3"                }
             }
         }
 
