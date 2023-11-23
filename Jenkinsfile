@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.8' // Choose the Python version you need
-        }
-    }
+    agent any
 
     stages {
         stage('Checkout') {
@@ -11,8 +7,14 @@ pipeline {
                 checkout scm
             }
         }
+        
 
         stage('Run Python Script') {
+            agent {
+                docker {
+                    image 'python:3.8' // Choose the Python version you need
+                }
+            }
             steps {
                 script {
                     bat 'python pscript.py'
