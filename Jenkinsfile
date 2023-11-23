@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.8' // Choose the Python version you need
+        }
+    }
 
     stages {
         stage('Checkout') {
