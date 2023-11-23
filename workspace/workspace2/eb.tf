@@ -18,7 +18,7 @@ resource "aws_elastic_beanstalk_application" "my_app" {
 }
 
 resource "aws_elastic_beanstalk_environment" "my_environment" {
-  name        = "MyElasticBeanstalkAppsanket0001111"
+  name        = "MyEnvironmentsanket0001111"
   application = aws_elastic_beanstalk_application.my_app.name
   solution_stack_name = "64bit Amazon Linux 2 v3.5.9 running Python 3.8"
   
