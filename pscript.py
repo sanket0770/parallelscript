@@ -16,7 +16,7 @@ def deploy_environment(workspace):
         print(f"Error deploying workspace {workspace}: {e}")
 
 # List of Terraform workspace directories
-workspaces = [r"workspace/workspace1", r"workspace/workspace2", r"workspace/workspace3"]  # Add your workspace directories here
+workspaces = [r"workspace/workspace1", r"workspace/workspace2", r"workspace/workspace3/s3.tf"]  # Add your workspace directories here
 
 # Set the maximum number of concurrent threads
 max_workers = 3  # You can adjust this based on your system's capabilities
