@@ -14,11 +14,35 @@ provider "aws" {
 }
 
 
-resource "aws_s3_bucket" "example" {
-  bucket = "my-terraff-test-bucket-0001-sanket1"
-  
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-  }
+resource "aws_s3_bucket" "b" {
+ bucket = "mytftestbucket0000000011111111111"
+}
+
+resource "aws_s3_bucket_public_access_block" "b" {
+  bucket = aws_s3_bucket.b.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+resource "aws_s3_bucket_policy" "b" {
+ bucket = aws_s3_bucket.b.id
+ policy = <<POLICY
+{
+ "Version": "2012-10-17",
+ "Id": "MYBUCKETPOLICY",
+ "Statement": [
+   {
+"Sid": "GrantAnonymousReadPermissions",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::mytftestbucket0000000011111111111/*"
+   }
+ ]
+}
+POLICY
+depends_on = [ aws_s3_bucket_public_access_block.b ]
 }
