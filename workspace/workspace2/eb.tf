@@ -23,7 +23,7 @@ resource "aws_s3_bucket" "bucket" {
 resource "aws_s3_object" "object" {
   bucket = aws_s3_bucket.bucket.id
   key    = "app-deployment-v1"
-  source = "C:\\Users\\Sanket Patil\\Desktop\\researchapp\\project\\app.zip"
+  source = "C:\\Users\\sysadmin\\Desktop\\researchapp\\app.zip"
   
 
   depends_on = [aws_s3_bucket.bucket]
