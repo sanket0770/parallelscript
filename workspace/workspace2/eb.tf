@@ -9,19 +9,42 @@ terraform {
 
 provider "aws" {
   region = "eu-west-2"
-  access_key = "AKIAX3LNWYOGIVRPHOXY"
-  secret_key = "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"
+}
+
+
+
+
+resource "aws_s3_bucket" "bucket" {
+  bucket = "terraform-eb-demo-bucket0001111"
+}
+
+resource "aws_s3_object" "object" {
+  bucket = aws_s3_bucket.bucket.id
+  key    = "app-deployment-v1"
+  source = "C:\\Users\\sysadmin\\Desktop\\researchapp\\app.zip"
+  
+
+  depends_on = [aws_s3_bucket.bucket]
 }
 
 resource "aws_elastic_beanstalk_application" "my_app" {
   name = "MyElasticBeanstalkAppsanket0001111"
 }
 
+resource "aws_elastic_beanstalk_application_version" "default" {
+  name        = "tf-test-version-label"
+  application = "MyElasticBeanstalkAppsanket0001111"
+  description = "application version created by terraform"
+  bucket      = aws_s3_bucket.bucket.id
+  key         = aws_s3_object.object.id
+}
+
 resource "aws_elastic_beanstalk_environment" "my_environment" {
   name        = "MyEnvironmentsanket0001111"
   application = aws_elastic_beanstalk_application.my_app.name
   solution_stack_name = "64bit Amazon Linux 2 v3.5.9 running Python 3.8"
-  
+  version_label = aws_elastic_beanstalk_application_version.default.name
+
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "InstanceType"
@@ -39,11 +62,12 @@ resource "aws_elastic_beanstalk_environment" "my_environment" {
     name      = "PYTHONPATH"
     value     = "/opt/python/current/app:/opt/python/run/venv/lib/python3.8/site-packages"
   }
-   setting {
+  
+  setting {
       namespace = "aws:autoscaling:launchconfiguration"
       name      = "IamInstanceProfile"
       value     = "aws-elasticbeanstalk-ec2-role"
     }
+
 }
 
-# You can add additional resources like AWS RDS, S3, etc., based on your application requirements.
