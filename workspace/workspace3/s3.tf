@@ -35,12 +35,17 @@ resource "aws_s3_bucket_policy" "b" {
  "Id": "MYBUCKETPOLICY",
  "Statement": [
    {
-"Sid": "GrantAnonymousReadPermissions",
+      "Sid": "GrantAnonymousReadPermissions",
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
       "Resource": "arn:aws:s3:::mytftestbucket0000000011111111111/*"
-   }
+   },
+      "Sid": "GrantAnonymousReadPermissions1",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::mytftestbucket0000000011111111111/*"
  ]
 }
 POLICY
