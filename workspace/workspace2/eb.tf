@@ -11,22 +11,6 @@ provider "aws" {
   region = "eu-west-2"
 }
 
-
-
-
-resource "aws_s3_bucket" "bucket" {
-  bucket = "terraform-eb-demo-bucket0001111"
-}
-
-resource "aws_s3_object" "object" {
-  bucket = aws_s3_bucket.bucket.id
-  key    = "app-deployment-v1"
-  source = "C:\\Users\\sysadmin\\Desktop\\researchapp\\app.zip"
-  
-
-  depends_on = [aws_s3_bucket.bucket]
-}
-
 resource "aws_elastic_beanstalk_application" "my_app" {
   name = "MyElasticBeanstalkAppsanket0001111"
 }
@@ -35,8 +19,8 @@ resource "aws_elastic_beanstalk_application_version" "default" {
   name        = "tf-test-version-label"
   application = "MyElasticBeanstalkAppsanket0001111"
   description = "application version created by terraform"
-  bucket      = aws_s3_bucket.bucket.id
-  key         = aws_s3_object.object.id
+  bucket      = "recipebook-app-bucket"
+  key         = "app.zip"
 }
 
 resource "aws_elastic_beanstalk_environment" "my_environment" {
