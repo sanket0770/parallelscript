@@ -19,7 +19,7 @@ resource "aws_elastic_beanstalk_application" "my_app" {
 
 resource "aws_elastic_beanstalk_application_version" "default" {
   name        = "tf-test-version-label"
-  application = "MyElasticBeanstalkAppsanket0001111"
+  application = aws_elastic_beanstalk_application.my_app.name
   description = "application version created by terraform"
   bucket      = "recipebook-app-bucket"
   key         = "app.zip"
